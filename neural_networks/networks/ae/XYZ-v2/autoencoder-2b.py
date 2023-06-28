@@ -2,8 +2,6 @@ from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D, Dropo
 from keras.layers import Conv1D, MaxPooling1D, UpSampling1D, Lambda, concatenate
 from keras.models import Model
 from random import randint
-from keras.optimizers import Adam
-from keras.datasets import mnist
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.callbacks import TensorBoard
@@ -125,10 +123,10 @@ autoencoder = Model(inputs=[input_img, input_img2], outputs=concat)
 autoencoder.compile("adam", loss='mse')
 
 autoencoder.fit([x_train, x_train2], x_test,
-                epochs=500,
+                epochs=20,
                 batch_size=128,
                 shuffle=True,
                 validation_data=([v_train, v_train2], v_test),
                 callbacks=[TensorBoard(log_dir='/tmp/tb', histogram_freq=0, write_graph=False)])
 
-autoencoder.save("Models/dae-xyz-v4b.h5")
+autoencoder.save("Models/dae-xyz-v4b-e20.h5")
