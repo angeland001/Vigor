@@ -1,16 +1,15 @@
 from __future__ import print_function, division
 
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout
-from tensorflow.keras.layers import BatchNormalization, Activation, ZeroPadding2D
-from tensorflow.keras.layers import LeakyReLU
-from tensorflow.keras.layers import UpSampling2D, Conv2D
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.optimizers import RMSprop
-import tensorflow.keras.backend as K
+from keras.datasets import mnist
+from keras.layers import Input, Dense, Reshape, Flatten, Dropout
+from keras.layers import BatchNormalization, Activation, ZeroPadding2D
+from keras.layers import LeakyReLU
+from keras.layers import UpSampling2D, Conv2D
+from keras.models import Sequential, Model
+from keras.optimizers import RMSprop
+import keras.backend as K
 from scipy.signal import savgol_filter
-
 import matplotlib.pyplot as plt
 import sys
 import numpy as np
