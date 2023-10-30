@@ -2,12 +2,12 @@ import pygame
 import numpy as np
 import pandas as pd
 
-prediction = pd.read_csv("networks/ae/XYZ-v2/CSVs/prediction-vidsmall-e20.csv")
+prediction = pd.read_csv("neural_networks/networks/ae/XYZ-v2/CSVs/prediction-vidsmall-e20.csv")
 prediction = np.array(prediction)[:, :-1]
 prediction = prediction.reshape((len(prediction), -1, 3))
 
-training_1 = np.array(pd.read_csv("networks/ae/XYZ-v2/NW-CSVs/training-2-1.csv"))[:len(prediction), :-1]
-training_2 = np.array(pd.read_csv("networks/ae/XYZ-v2/NW-CSVs/training-2-2.csv"))[:len(prediction), :-1]
+training_1 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-2-1.csv"))[:len(prediction), :-1]
+training_2 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-2-2.csv"))[:len(prediction), :-1]
 training = np.concatenate((training_1, training_2), axis=1)
 training = training.reshape((len(prediction), -1, 3))
 

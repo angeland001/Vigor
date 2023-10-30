@@ -2,7 +2,7 @@ import pygame
 from helpers.read_json import return_joint_cartesian
 import numpy as np
 
-movement = return_joint_cartesian(open("JSONs/Walking/walking_0.json"))
+movement = return_joint_cartesian(open("neural_networks/JSONs/Walking/walking_0.json"))
 movement = np.array(movement)
 
 pygame.init()
@@ -29,7 +29,7 @@ while _run:
         if event.type == pygame.QUIT:
             carryOn = False
 
-    screen.fill(BLACK)
+    screen.fill(WHITE)
 
     """
     This for-loop (and the movement_index) is the only code you would need to copy over/change if you want to add 
@@ -37,7 +37,7 @@ while _run:
     """
     for joint in movement[movement_index]:
         x, y, _ = joint
-        pygame.draw.circle(screen, WHITE, [x, y], 2)
+        pygame.draw.circle(screen, BLUE, [x, y], 2)
 
     screen.blit(pygame.transform.rotate(screen, 180), (0, 0))
     pygame.display.flip()

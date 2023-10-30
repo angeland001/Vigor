@@ -120,7 +120,7 @@ class WGAN():
     def train(self, epochs, batch_size=128, sample_interval=50):
         global scaler, joint_scalers
         # Load the dataset
-        DATA_DIR = 'Data/CSVs/training.csv'
+        DATA_DIR = 'neural_networks/networks/ae/XYZ-v2/CSVs/training.csv'
         data = open(DATA_DIR, 'r').readlines()
 
         dataset = []
