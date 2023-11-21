@@ -2,12 +2,12 @@ import pygame
 import numpy as np
 import pandas as pd
 
-prediction = pd.read_csv("neural_networks/networks/ae/XYZ-v2/CSVs/prediction-vidsmall-e20.csv")
+prediction = pd.read_csv("neural_networks/networks/ae/XYZ-v1/CSVs/prediction-vide.csv")
 prediction = np.array(prediction)[:, :-1]
 prediction = prediction.reshape((len(prediction), -1, 3))
 
-training_1 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-2-1.csv"))[:len(prediction), :-1]
-training_2 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-2-2.csv"))[:len(prediction), :-1]
+training_1 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-1-1.csv"))[:len(prediction), :-1]
+training_2 = np.array(pd.read_csv("neural_networks/networks/ae/XYZ-v2/NW-CSVs/training-1-2.csv"))[:len(prediction), :-1]
 training = np.concatenate((training_1, training_2), axis=1)
 training = training.reshape((len(prediction), -1, 3))
 
@@ -37,7 +37,7 @@ while _run:
         if event.type == pygame.QUIT:
             carryOn = False
 
-    screen.fill(BLACK)
+    screen.fill(WHITE)
 
     """
     This for-loop (and the movement_index) is the only code you would need to copy over/change if you want to add 
@@ -45,7 +45,7 @@ while _run:
     """
     for joint in movement[movement_index]:
         x, y, _ = joint
-        pygame.draw.circle(screen, WHITE, [x, y], 2)
+        pygame.draw.circle(screen, BLUE, [x, y], 2)
 
     screen.blit(pygame.transform.rotate(screen, 180), (0, 0))
     pygame.display.flip()
