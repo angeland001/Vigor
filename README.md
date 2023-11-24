@@ -57,6 +57,37 @@ The line wgan.train(epochs=10000, batch_size=8, sample_interval=120) is calling 
 
 ***The line essentially initiates the training process for the WGAN instance, specifying the training configuration such as the number of epochs, batch size, and sample interval.***
 
+## neural_networks/networks/ae/XYZ-v1/gta.py (Explanation)
+
+Loads ground truth and prediction data from CSV files, reshapes the data, calculates the Euclidean distance between corresponding points in the datasets, and prints the resulting distance. This kind of distance metric is often used to assess how well a model's predictions match the ground truth or target values.
+
+## neural_networks/networks/ae/XYZ-v1/old_target.py (Explanation)
+
+* Opens a JSON file (read + '.json') and loads its content into a Python dictionary named userdata.
+* For each frame (out of 5000) and each joint in the range of "45", it applies the transform function to the Euler angles of the joint and writes the transformed values to a CSV file (write + '.csv'). The transformed values are cosines of half of the original angles. (Pretty sure this is to account for angles when limbs are shifting around in angles and/or in front of other limbs
+* The transform function takes an angle (data), halves it, converts it to radians, and then calculates the cosine. If the original angle is greater than 180 degrees, it multiplies the cosine by -1.
+*  the convert function is called with the JSON file path as 'JSONs/ae-naturalwalk-1.json' and the CSV file name as 'target'. This initiates the conversion process, applying the specified transformations and writing the results to a CSV file.
+
+***The code converts Euler angles from a JSON file, applies specific transformations, and writes the transformed data to a CSV file. The transformations involve halving the angle, converting it to radians, and taking the cosine, with a special handling for angles greater than 180 degrees.***
+
+## neural_networks/networks/ae/XYZ-v1/old_training.py (Explanation)
+
+**Similar to old_target.py but modification is different**
+
+```
+for joint in "0123":
+    if joint in "45":
+        save_file.write("0.0,0.0,0.0,")
+    else:
+        # ... (rest of the code remains the same)
+```
+
+* The code iterates over joints labeled as "0123". If the current joint is in "45", it writes a placeholder of "0.0,0.0,0.0," to the CSV file. Otherwise, it proceeds to write the transformed Euler angles for that joint.
+This modification ensures that joints labeled as "4" and "5" receive a placeholder value of "0.0,0.0,0.0," instead of writing the transformed Euler angles.
+* Convert function with the JSON file path as 'JSONs/ae-naturalwalk-1.json' and the CSV file name as 'training-transformed'. The purpose is to initiate the conversion process with the updated joint handling.
+
+***the code converts Euler angles from a JSON file, applies specific transformations, and writes the transformed data to a CSV file. The modification ensures that for joints labeled as "4" and "5", a placeholder value of "0.0,0.0,0.0," is written instead of the transformed Euler angles.***
+
 
 
 
