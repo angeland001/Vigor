@@ -129,6 +129,19 @@ for frame in prediction_data:
 ***this code loads a pre-trained denoising autoencoder model, reads training data from a CSV file, generates predictions using the autoencoder, and writes the predicted data to a new CSV file. The resulting CSV file contains the reconstructed data predicted by the autoencoder based on the input training data.***
 
  
+## neural_networks/networks/ae/XYZ-v1/target_writer.py (Explanation)
+
+This code reads joint data from a JSON file and writes specific joint coordinates to a CSV file.
+
+***Extracts joint coordinates from a JSON file representing motion capture data, specifically targeting joints with indices 12, 13, 14, 16, 17, and 18. It then writes these joint coordinates to a CSV file, where each row corresponds to a frame, and the columns contain x, y, and z coordinates for the specified joints.***
+
+
+## neural_networks/networks/ae/XYZ-v1/training_writer.py (Explanation)
+
+***Extracts joint coordinates from a JSON file representing motion capture data, specifically targeting joints with indices 4, 5, 6, 8, 9, and 10. It then writes these joint coordinates to a CSV file, where each row corresponds to a frame, and the columns contain x, y, and z coordinates for the specified joints. The purpose of this code is likely to prepare data for training or analysis, focusing on a subset of joints from the motion capture data.***
+
+
+
 
 
 
