@@ -141,6 +141,15 @@ This code reads joint data from a JSON file and writes specific joint coordinate
 ***Extracts joint coordinates from a JSON file representing motion capture data, specifically targeting joints with indices 4, 5, 6, 8, 9, and 10. It then writes these joint coordinates to a CSV file, where each row corresponds to a frame, and the columns contain x, y, and z coordinates for the specified joints. The purpose of this code is likely to prepare data for training or analysis, focusing on a subset of joints from the motion capture data.***
 
 
+# TO DO FOR VIGOR TEAMMATES
+
+With neural_networks/networks/ae/XYZ-v1/autoencoder-gtadimensions.py, You guys in backend will attempt to train a model using the training and testing data produced in CSV from previous data gathering. Look in autoencoder-gtadimensions.py to get started
+
+***NOTE: I have added hints on what you need to accomplish but google will be your best friend. Most everyone cannot memorize everything in one go so it takes practice! Experiment and see where it goes. Hopefully you'll have a working trained model to use for predictions in predict.py***
+
+
+
+
 
 
 
