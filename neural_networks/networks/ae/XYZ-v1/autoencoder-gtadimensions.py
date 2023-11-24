@@ -16,22 +16,23 @@ from keras.callbacks import TensorBoard
         #If it isnt, append that data to training list
     #Check for ValueError and just pass it to be sure (GOOGLE)
 
-'''
+
 # Task: Read data from the Target file (Same as above)
-HINT: Using a loop, go through every row (Basically .readlines())
+#HINT: Using a loop, go through every row (Basically .readlines())
     #using another loop (Nested Loop), for each item in that row with it being seperated by .split(",")
     #Check to see if the item in each iteration is **not** a new line or empty
         #If it isnt, append that data to training list
     #Check for ValueError and just pass it to be sure (GOOGLE)
 
 
-'''
 
-'''
+
+
 
 # Task: Reshape and preprocess the data
-Initilize new variables for reshaping the previous made lists
+#Initilize new variables for reshaping the previous made lists
 
+'''
 The np.reshape function is used to reshape the training and target data arrays.
 (-1, 18, 1) specifies the desired shape of the arrays. Here, -1 means that the size of that dimension is inferred based on the length of the data, 
 and 18 and 1 represent the dimensions. The data is reshaped to have a three-dimensional structure where the first dimension represents the number 
