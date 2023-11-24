@@ -88,6 +88,47 @@ This modification ensures that joints labeled as "4" and "5" receive a placehold
 
 ***the code converts Euler angles from a JSON file, applies specific transformations, and writes the transformed data to a CSV file. The modification ensures that for joints labeled as "4" and "5", a placeholder value of "0.0,0.0,0.0," is written instead of the transformed Euler angles.***
 
+## neural_networks/networks/ae/XYZ-v1/predict.py (Explanation)
+
+* The code loads a pre-trained denoising autoencoder model from the file "Models/dae-xyz-gta.h5" using the load_model function from Keras.
+    *  Uses model trained by autoencoder-gtadimensions.py  for denoising
+
+```
+training_file = open('CSVs/training-gta.csv', 'r')
+training_data = []
+
+for line in training_file.readlines():
+    for data in line.split(","):
+        if data != "\n" or data != "":
+            try:
+                training_data.append(float(data))
+            except ValueError:
+                pass
+training_data = np.reshape(training_data, (-1, 18, 1))
+
+```
+* reads training data from the file "CSVs/training-gta.csv". It processes the data by converting it to a flat list of floats and then reshapes it into a NumPy array with the shape (-1, 18, 1). This reshaping is consistent with the expected input format for the autoencoder.
+
+```
+prediction_file = open('CSVs/prediction-gta.csv', 'w')
+prediction_data = np.reshape(prediction_data, (-1, 18, 1))
+
+for frame in prediction_data:
+    for data in frame:
+        prediction_file.write(str(data[0]))
+        prediction_file.write(",")
+    prediction_file.write("\n")
+
+
+```
+
+* opens a new CSV file "CSVs/prediction-gta.csv" for writing.
+    * It reshapes the prediction data to match the expected format and then iterates through the frames and data points in the prediction. For each data point, it writes the value to the CSV file, separated by commas, and appends a newline character at the end of each frame.
+    *  iterates through the frames and data points in the prediction. For each data point, it writes the value to the CSV file, separated by commas, and appends a newline character at the end of each frame.
+ 
+***this code loads a pre-trained denoising autoencoder model, reads training data from a CSV file, generates predictions using the autoencoder, and writes the predicted data to a new CSV file. The resulting CSV file contains the reconstructed data predicted by the autoencoder based on the input training data.***
+
+ 
 
 
 
