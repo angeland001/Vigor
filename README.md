@@ -15,3 +15,48 @@ Machine Learning Model built using Keras for predicting joint Cartesian coordina
 
 * Iterates through the joint Cartesian data to create input sequences (X) and corresponding labels (y) for training.
 * Reshape the data into NumPy arrays.
+
+***The overall goal of the code is to create, compile, and train a neural network model for predicting joint Cartesian coordinates based on a walking sequence, using a convolutional neural network (CNN) architecture. The mean squared error is used as the loss function, and the Adam optimizer is employed for training the model. The training data consists of input sequences (X) and corresponding labels (y).***
+
+## neural_networks/train_wgan.py (Explanation)
+
+Implements a Wasserstein Generative Adversarial Network (WGAN) for training on a dataset of joint data from motion capture (Mocap using kinect) in the context of generating movement data.
+
+### Load and Preprocess Data:
+
+* Use glob to get file paths for all CSV files in the "data" directory.
+* Initialize variables: X_train (initially set to None), scaler (a MinMaxScaler class), joint_scalers (a list to store individual joint scalers), and batch_size.
+* Read the first 500 lines from each CSV file in the "data" directory, concatenate them, and store them in readlines_arr.
+* Process each line in readlines_arr: remove newline characters, split by comma, convert values to float, truncate to 72 values, and append to X_train.
+
+### Feature Scaling:
+
+* Reshape X_train to have 72 columns.
+* Transpose the matrix so that it has dimensions (72, number of samples).
+* For each joint, create a MinMaxScaler (this_joint_mms), fit it to the joint data, transform the data, and append the scaled joint data to new_X.
+* Convert new_X to a NumPy array and reshape it to have dimensions (72, number of samples).
+* Transpose the matrix back to the original shape.
+
+### Data Preparation for WGAN:
+* Reshape X to have dimensions (-1, 100, 24, 3), where 100 is the sequence length, 24 is the number of joints, and 3 is the number of coordinates.
+* After, Train the model.
+
+***Loads joint data from motion capture, preprocesses it (including feature scaling for each joint), and uses a Wasserstein Generative Adversarial Network (WGAN) to generate synthetic data. The WGAN is trained on the preprocessed data for a specified number of epochs, and samples are generated and saved at regular intervals during training.***
+
+## neural_networks/wgan_choreo_2.py (Explanation)
+
+The line wgan.train(epochs=10000, batch_size=8, sample_interval=120) is calling the train method of the WGAN class instance (wgan).
+
+* wgan: An instance of the WGAN class, which is an implementation of a Wasserstein Generative Adversarial Network (WGAN).
+* .train(epochs=10000, batch_size=8, sample_interval=120): Calls the train method of the WGAN instance with the following parameters:
+* epochs=10000: The number of training epochs, specifying how many times the generator and critic models will be updated during training.
+* batch_size=8: The number of samples used in each iteration of training. The critic is updated multiple times per generator update (n_critic times).
+* sample_interval=120: Specifies how often (in terms of epochs) to save and generate samples during training. In this case, samples will be saved every 120 epochs.
+
+***The train method is responsible for training the WGAN by iteratively updating the generator and critic models. It loads the training data, preprocesses it, and uses the Wasserstein loss for training. Additionally, it includes logic to save generated samples at specified intervals. The training process involves training the discriminator (critic) multiple times for each generator update, as is typical in Wasserstein GANs.***
+
+***The line essentially initiates the training process for the WGAN instance, specifying the training configuration such as the number of epochs, batch size, and sample interval.***
+
+
+
+
