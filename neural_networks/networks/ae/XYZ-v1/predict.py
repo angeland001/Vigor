@@ -17,7 +17,6 @@ for line in training_file.readlines():
 training_data = np.reshape(training_data, (-1, 18, 1))
 prediction_data = autoencoder.predict(training_data)
 
-prediction_file = open('CSVs/prediction-gta.csv', 'w')
 prediction_file = open(r'C:\Users\angel\Documents\GitHub\Vigor\neural_networks\networks\ae\XYZ-v1\CSVs\prediction-gta.csv', 'w')
 prediction_data = np.reshape(prediction_data, (-1, 18, 1))
 
